@@ -1,0 +1,288 @@
+---
+title: "Reestructurando Integrales"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+
+
+# Sustitución con Reestructuración
+## Ejercicio 1
+Calcular la siguiente integral:
+$$\int \frac{x^5}{(x^2 + 1)^3} \, dx$$
+
+##
+En este ejercicio la sustitución directa no basta, hay que reestructurar una potencia de $x$. Tomamos $u = x^2 + 1$ y $du = 2x \, dx$.
+
+Utilizando la reestructuración:
+$$x^5 \, dx = x^4 \cdot (x \, dx) = (u - 1)^2 \cdot \frac{du}{2}$$
+
+Ya que $x^2 = u - 1$, entonces $x^4 = (u - 1)^2$.
+
+##
+Reemplazando en la integral:
+$$\int \frac{x^5}{(x^2 + 1)^3} \, dx = \frac{1}{2} \int \frac{(u - 1)^2}{u^3} \, du$$
+
+Expandiendo el numerador:
+$$\frac{1}{2} \int \frac{u^2 - 2u + 1}{u^3} \, du = \frac{1}{2} \int \left( \frac{1}{u} - \frac{2}{u^2} + \frac{1}{u^3} \right) du$$
+
+##
+Integrando término a término:
+$$\frac{1}{2} \left( \ln |u| + \frac{2}{u} - \frac{1}{2u^2} \right) + C$$
+
+Reemplazando $u = x^2 + 1$:
+$$\frac{1}{2} \ln (x^2 + 1) + \frac{1}{x^2 + 1} - \frac{1}{4(x^2 + 1)^2} + C$$
+
+## Ejercicio 2
+Calcular la siguiente integral:
+$$\int x^3 \sqrt{x^2 + 4} \, dx$$
+
+##
+Tomamos $u = x^2 + 4$ y $du = 2x \, dx$, por lo que $x \, dx = \frac{1}{2} du$.
+
+Pero nos sobra un factor $x^2$, que expresamos en términos de $u$:
+$$x^3 \, dx = x^2 \cdot (x \, dx) = (u - 4) \cdot \frac{du}{2}$$
+
+##
+Reemplazando en la integral:
+$$\int x^3 \sqrt{x^2 + 4} \, dx = \frac{1}{2} \int (u - 4) u^{1/2} \, du$$
+
+Distribuyendo:
+$$\frac{1}{2} \int \left( u^{3/2} - 4 u^{1/2} \right) du$$
+
+##
+Integrando:
+$$\frac{1}{2} \left( \frac{2}{5} u^{5/2} - \frac{8}{3} u^{3/2} \right) + C$$
+
+Reemplazando $u = x^2 + 4$:
+$$\frac{1}{5} (x^2 + 4)^{5/2} - \frac{4}{3} (x^2 + 4)^{3/2} + C$$
+
+## Ejercicio 3
+Calcular la siguiente integral, con $x > 0$:
+$$\int \frac{(\ln x)^3}{x \sqrt{1 + (\ln x)^2}} \, dx$$
+
+##
+Primero tomamos $u = \ln x$ y $du = \frac{1}{x} \, dx$:
+$$\int \frac{(\ln x)^3}{x \sqrt{1 + (\ln x)^2}} \, dx = \int \frac{u^3}{\sqrt{1 + u^2}} \, du$$
+
+Ahora hacemos una segunda sustitución, $t = 1 + u^2$ y $dt = 2u \, du$. Como $u^2 = t - 1$:
+$$u^3 \, du = u^2 \cdot (u \, du) = (t - 1) \cdot \frac{dt}{2}$$
+
+##
+Reemplazando en la integral:
+$$\frac{1}{2} \int \frac{t - 1}{\sqrt{t}} \, dt = \frac{1}{2} \int \left( t^{1/2} - t^{-1/2} \right) dt$$
+
+Integrando:
+$$\frac{1}{2} \left( \frac{2}{3} t^{3/2} - 2 t^{1/2} \right) + C$$
+
+##
+Regresando a $t = 1 + u^2$ y luego a $u = \ln x$:
+$$\frac{1}{3} \left( 1 + (\ln x)^2 \right)^{3/2} - \left( 1 + (\ln x)^2 \right)^{1/2} + C$$
+
+## Ejercicio 4
+Calcular la siguiente integral:
+$$\int \frac{e^{3x}}{1 + e^x} \, dx$$
+
+##
+Tomamos $u = e^x$, de modo que $du = e^x \, dx$. Como $e^{3x} = e^{2x} \cdot e^x = u^2 \cdot du$:
+$$e^{3x} \, dx = u^2 \, du$$
+
+##
+Reemplazando en la integral:
+$$\int \frac{e^{3x}}{1 + e^x} \, dx = \int \frac{u^2}{1 + u} \, du$$
+
+Necesitamos dividir polinómicamente el numerador por el denominador:
+$$\frac{u^2}{1 + u} = u - 1 + \frac{1}{1 + u}$$
+
+##
+Integrando:
+$$\int \left( u - 1 + \frac{1}{1 + u} \right) du = \frac{u^2}{2} - u + \ln |1 + u| + C$$
+
+Regresando a $u = e^x$:
+$$\frac{e^{2x}}{2} - e^x + \ln(1 + e^x) + C$$
+
+# Integración por Partes
+## Ejercicio 5
+Calcular la siguiente integral, con $x > 0$:
+$$\int x^2 \ln x \, dx$$
+
+##
+Usamos integración por partes, los términos generados al derivar el logaritmo se cancelan. Elegimos:
+$$u = \ln x, \quad dv = x^2 \, dx$$
+
+Por lo tanto:
+$$du = \frac{1}{x} \, dx, \quad v = \frac{x^3}{3}$$
+
+##
+Aplicando la fórmula de integración por partes:
+$$\int x^2 \ln x \, dx = \frac{x^3}{3} \ln x - \int \frac{x^3}{3} \cdot \frac{1}{x} \, dx$$
+
+Simplificando la integral restante:
+$$\frac{x^3}{3} \ln x - \frac{1}{3} \int x^2 \, dx$$
+
+##
+Integrando:
+$$\frac{x^3}{3} \ln x - \frac{x^3}{9} + C$$
+
+## Ejercicio 6
+Calcular la siguiente integral:
+$$\int x^2 e^{2x} \, dx$$
+
+##
+Aplicamos por partes repetida hasta reducir el polinomio a grado cero. Elegimos:
+$$u = x^2, \quad dv = e^{2x} \, dx$$
+
+Por lo tanto:
+$$du = 2x \, dx, \quad v = \frac{1}{2} e^{2x}$$
+
+##
+Aplicando la fórmula:
+$$\int x^2 e^{2x} \, dx = \frac{x^2}{2} e^{2x} - \int x e^{2x} \, dx$$
+
+Resolvemos $\int x e^{2x} \, dx$ por partes, con $u = x$ y $dv = e^{2x} \, dx$:
+$$\int x e^{2x} \, dx = \frac{x}{2} e^{2x} - \frac{1}{4} e^{2x}$$
+
+##
+Reemplazando:
+$$\frac{x^2}{2} e^{2x} - \frac{x}{2} e^{2x} + \frac{1}{4} e^{2x} + C$$
+
+Factorizando:
+$$e^{2x} \left( \frac{x^2}{2} - \frac{x}{2} + \frac{1}{4} \right) + C$$
+
+## Ejercicio 7
+Calcular la siguiente integral:
+$$\int e^{2x} \cos(3x) \, dx$$
+
+##
+El procedimiento es cíclico: la integral original reaparece y hay que despejarla. Denotamos:
+$$I = \int e^{2x} \cos(3x) \, dx$$
+
+En la primera aplicación elegimos $u = e^{2x}$ y $dv = \cos(3x) \, dx$, por lo que $du = 2e^{2x} \, dx$ y $v = \frac{1}{3} \sin(3x)$:
+$$I = \frac{1}{3} e^{2x} \sin(3x) - \frac{2}{3} \int e^{2x} \sin(3x) \, dx$$
+
+##
+Aplicando partes nuevamente a $\int e^{2x} \sin(3x) \, dx$, con $u = e^{2x}$ y $dv = \sin(3x) \, dx$:
+$$\int e^{2x} \sin(3x) \, dx = -\frac{1}{3} e^{2x} \cos(3x) + \frac{2}{3} I$$
+
+Reemplazando en la expresión original:
+$$I = \frac{1}{3} e^{2x} \sin(3x) + \frac{2}{9} e^{2x} \cos(3x) - \frac{4}{9} I$$
+
+##
+Despejando la integral original:
+$$\frac{13}{9} I = \frac{1}{3} e^{2x} \sin(3x) + \frac{2}{9} e^{2x} \cos(3x)$$
+
+Multiplicando por $\frac{9}{13}$:
+$$I = e^{2x} \left( \frac{3}{13} \sin(3x) + \frac{2}{13} \cos(3x) \right) + C$$
+
+## Ejercicio 8
+Calcular la siguiente integral:
+$$\int \arctan x \, dx$$
+
+##
+Convertimos la función en un producto implícito: $1 \cdot \arctan x$. Elegimos:
+$$u = \arctan x, \quad dv = dx$$
+
+Por lo tanto:
+$$du = \frac{1}{1 + x^2} \, dx, \quad v = x$$
+
+##
+Aplicando la fórmula:
+$$\int \arctan x \, dx = x \arctan x - \int \frac{x}{1 + x^2} \, dx$$
+
+La integral restante es inmediata por sustitución ($t = 1 + x^2$):
+$$\int \frac{x}{1 + x^2} \, dx = \frac{1}{2} \ln(1 + x^2)$$
+
+##
+Finalmente:
+$$x \arctan x - \frac{1}{2} \ln(1 + x^2) + C$$
+
+## Ejercicio 9
+Calcular la siguiente integral:
+$$\int x^3 \arctan x \, dx$$
+
+##
+Aplicamos por partes, la derivada de $\arctan x$ convierte el problema en una integral racional. Elegimos:
+$$u = \arctan x, \quad dv = x^3 \, dx$$
+
+Por lo tanto:
+$$du = \frac{1}{1 + x^2} \, dx, \quad v = \frac{x^4}{4}$$
+
+##
+Aplicando la fórmula:
+$$\int x^3 \arctan x \, dx = \frac{x^4}{4} \arctan x - \frac{1}{4} \int \frac{x^4}{1 + x^2} \, dx$$
+
+Dividimos el numerador por el denominador:
+$$\frac{x^4}{1 + x^2} = x^2 - 1 + \frac{1}{1 + x^2}$$
+
+##
+Reemplazando:
+$$\frac{x^4}{4} \arctan x - \frac{1}{4} \int \left( x^2 - 1 + \frac{1}{1 + x^2} \right) dx$$
+
+Integrando:
+$$\frac{x^4}{4} \arctan x - \frac{x^3}{12} + \frac{x}{4} - \frac{1}{4} \arctan x + C$$
+
+# Desafíos Integrados
+## Ejercicio 10
+Calcular la siguiente integral:
+$$\int x^5 e^{x^2} \, dx$$
+
+##
+Primero transformamos la composición. Tomamos $u = x^2$ y $du = 2x \, dx$, de modo que $x \, dx = \frac{1}{2} du$.
+
+Como $x^4 = u^2$, podemos reestructurar:
+$$x^5 \, dx = x^4 \cdot (x \, dx) = u^2 \cdot \frac{du}{2}$$
+
+##
+Reemplazando en la integral:
+$$\int x^5 e^{x^2} \, dx = \frac{1}{2} \int u^2 e^u \, du$$
+
+Ahora aplicamos por partes repetida dos veces, hasta reducir $u^2$ a una constante:
+$$\int u^2 e^u \, du = e^u \left( u^2 - 2u + 2 \right)$$
+
+##
+Reemplazando:
+$$\frac{1}{2} e^u \left( u^2 - 2u + 2 \right) + C$$
+
+Regresando a $u = x^2$:
+$$\frac{1}{2} e^{x^2} \left( x^4 - 2x^2 + 2 \right) + C$$
+
+## Ejercicio 11
+Calcular la siguiente integral:
+$$\int x^3 \ln(x^2 + 1) \, dx$$
+
+##
+La sustitución produce un producto en la nueva variable. Tomamos $u = x^2 + 1$ y $du = 2x \, dx$, de modo que $x \, dx = \frac{1}{2} du$.
+
+Como $x^2 = u - 1$:
+$$x^3 \, dx = x^2 \cdot (x \, dx) = (u - 1) \cdot \frac{du}{2}$$
+
+##
+Reemplazando en la integral:
+$$\int x^3 \ln(x^2 + 1) \, dx = \frac{1}{2} \int (u - 1) \ln u \, du$$
+
+Separamos en dos integrales:
+$$\frac{1}{2} \left( \int u \ln u \, du - \int \ln u \, du \right)$$
+
+##
+Resolvemos cada una por partes:
+$$\int u \ln u \, du = \frac{u^2}{2} \ln u - \frac{u^2}{4}$$
+$$\int \ln u \, du = u \ln u - u$$
+
+##
+Reemplazando:
+$$\frac{1}{2} \left( \frac{u^2}{2} \ln u - \frac{u^2}{4} - u \ln u + u \right) + C$$
+
+Regresando a $u = x^2 + 1$:
+$$\frac{1}{2} \left( \frac{(x^2 + 1)^2}{2} \ln(x^2 + 1) - \frac{(x^2 + 1)^2}{4} - (x^2 + 1) \ln(x^2 + 1) + x^2 + 1 \right) + C$$
+
+# Gracias por su atención

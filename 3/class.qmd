@@ -1,0 +1,179 @@
+---
+title: "Sustitución, Por Partes y Fracciones Parciales"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+# Sustitución
+## Ejercicio 1
+Calcular la siguiente integral:
+$$\int x^3 \sqrt{x^2 + 4} \, dx$$
+
+##
+La sustitución no aparece de inmediato porque sobra un factor $x^2$. Tomamos $u = x^2 + 4$, de modo que $du = 2x \, dx$ y $x \, dx = \frac{1}{2} du$.
+
+Reservamos el factor $x \, dx$ y reescribimos la potencia restante usando que $x^2 = u - 4$:
+$$x^3 \, dx = x^2 \cdot (x \, dx) = (u - 4) \cdot \frac{du}{2}$$
+
+##
+Reemplazando en la integral:
+$$\int x^3 \sqrt{x^2 + 4} \, dx = \frac{1}{2} \int (u - 4) u^{1/2} \, du$$
+
+Distribuyendo:
+$$\frac{1}{2} \int \left( u^{3/2} - 4 u^{1/2} \right) du$$
+
+##
+Integrando:
+$$\frac{1}{2} \left( \frac{2}{5} u^{5/2} - \frac{8}{3} u^{3/2} \right) + C$$
+
+Regresando a $u = x^2 + 4$:
+$$\frac{1}{5} (x^2 + 4)^{5/2} - \frac{4}{3} (x^2 + 4)^{3/2} + C$$
+
+##
+Verificación por derivación:
+$$\frac{d}{dx} \left[ \frac{1}{5} (x^2 + 4)^{5/2} - \frac{4}{3} (x^2 + 4)^{3/2} \right] = x (x^2 + 4)^{3/2} - 4x (x^2 + 4)^{1/2}$$
+
+Factorizando $x (x^2 + 4)^{1/2}$:
+$$x (x^2 + 4)^{1/2} \left[ (x^2 + 4) - 4 \right] = x^3 \sqrt{x^2 + 4}$$
+
+# Integración por partes
+## Ejercicio 2
+Calcular la siguiente integral:
+$$\int e^x \sin(2x) \, dx$$
+
+##
+El procedimiento es cíclico: la integral original reaparece y hay que despejarla. Denotamos:
+$$I = \int e^x \sin(2x) \, dx$$
+
+En la primera aplicación elegimos $u = e^x$ y $dv = \sin(2x) \, dx$, de modo que $du = e^x \, dx$ y $v = -\frac{1}{2} \cos(2x)$:
+$$I = -\frac{1}{2} e^x \cos(2x) + \frac{1}{2} \int e^x \cos(2x) \, dx$$
+
+##
+Aplicando partes nuevamente a $J = \int e^x \cos(2x) \, dx$, con $u = e^x$ y $dv = \cos(2x) \, dx$:
+$$J = \frac{1}{2} e^x \sin(2x) - \frac{1}{2} I$$
+
+Reemplazando $J$ en la expresión de $I$:
+$$I = -\frac{1}{2} e^x \cos(2x) + \frac{1}{4} e^x \sin(2x) - \frac{1}{4} I$$
+
+##
+La integral original reaparece. Despejando:
+$$\frac{5}{4} I = \frac{1}{4} e^x \sin(2x) - \frac{1}{2} e^x \cos(2x)$$
+
+Multiplicando por $\frac{4}{5}$:
+$$I = \frac{e^x}{5} \left( \sin(2x) - 2 \cos(2x) \right) + C$$
+
+## Ejercicio 3
+Calcular la siguiente integral:
+$$\int \arctan x \, dx$$
+
+##
+La función inversa no parece un producto, pero siempre puede escribirse como $1 \cdot \arctan x$. Elegimos:
+$$u = \arctan x, \quad dv = dx$$
+
+Por lo tanto:
+$$du = \frac{1}{1 + x^2} \, dx, \quad v = x$$
+
+##
+Aplicando la fórmula:
+$$\int \arctan x \, dx = x \arctan x - \int \frac{x}{1 + x^2} \, dx$$
+
+La integral restante se resuelve por sustitución, con $t = 1 + x^2$:
+$$\int \frac{x}{1 + x^2} \, dx = \frac{1}{2} \ln(1 + x^2)$$
+
+##
+Finalmente:
+$$x \arctan x - \frac{1}{2} \ln(1 + x^2) + C$$
+
+Verificación por derivación:
+$$\frac{d}{dx} \left[ x \arctan x - \frac{1}{2} \ln(1 + x^2) \right] = \arctan x + \frac{x}{1 + x^2} - \frac{x}{1 + x^2} = \arctan x$$
+
+# Fracciones parciales
+## El método
+Se aplica cuando el integrando es una función racional propia. Los pasos son:
+
+- Verificar que la fracción es propia; si no, realizar la división polinómica primero.
+- Factorizar el denominador en factores lineales y cuadráticos irreducibles.
+- Escribir la descomposición según el caso: factores lineales distintos, factores lineales repetidos (todas sus potencias) o un numerador lineal sobre un cuadrático irreducible.
+- Determinar los coeficientes y aplicar la integral de la potencia, del logaritmo o del arcotangente.
+
+## Ejercicio 4
+Calcular la siguiente integral:
+$$\int \frac{5x + 7}{x^2 + x - 2} \, dx$$
+
+##
+La fracción es propia. Factorizamos el denominador:
+$$x^2 + x - 2 = (x - 1)(x + 2)$$
+
+Son factores lineales distintos, por lo que la descomposición es:
+$$\frac{5x + 7}{(x - 1)(x + 2)} = \frac{A}{x - 1} + \frac{B}{x + 2}$$
+
+##
+Multiplicamos por $(x - 1)(x + 2)$:
+$$5x + 7 = A(x + 2) + B(x - 1)$$
+
+Evaluamos en las raíces del denominador. Con $x = 1$:
+$$12 = 3A \quad \Longrightarrow \quad A = 4$$
+
+Con $x = -2$:
+$$-3 = -3B \quad \Longrightarrow \quad B = 1$$
+
+##
+La descomposición queda:
+$$\frac{5x + 7}{x^2 + x - 2} = \frac{4}{x - 1} + \frac{1}{x + 2}$$
+
+Integrando:
+$$\int \left( \frac{4}{x - 1} + \frac{1}{x + 2} \right) dx = 4 \ln |x - 1| + \ln |x + 2| + C$$
+
+##
+Verificación por derivación:
+$$\frac{d}{dx} \left[ 4 \ln |x - 1| + \ln |x + 2| \right] = \frac{4}{x - 1} + \frac{1}{x + 2} = \frac{4(x + 2) + (x - 1)}{(x - 1)(x + 2)} = \frac{5x + 7}{x^2 + x - 2}$$
+
+## Ejercicio 5
+Calcular la siguiente integral:
+$$\int \frac{3x^2 - 4x + 8}{x^2 (x - 2)^2} \, dx$$
+
+##
+El denominador tiene factores lineales repetidos: $x$ con potencia 2 y $x - 2$ con potencia 2. La descomposición debe incluir todas sus potencias:
+$$\frac{3x^2 - 4x + 8}{x^2 (x - 2)^2} = \frac{A}{x} + \frac{B}{x^2} + \frac{C}{x - 2} + \frac{D}{(x - 2)^2}$$
+
+##
+Multiplicando por $x^2 (x - 2)^2$:
+$$3x^2 - 4x + 8 = A x (x - 2)^2 + B (x - 2)^2 + C x^2 (x - 2) + D x^2$$
+
+Expandimos y comparamos coeficientes:
+$$(A + C) x^3 + (-4A + B - 2C + D) x^2 + (4A - 4B) x + 4B = 3x^2 - 4x + 8$$
+
+##
+Del término constante: $4B = 8$, de donde $B = 2$.
+
+Del término en $x$: $4A - 4B = -4$, de donde $A = 1$.
+
+Del término en $x^3$: $A + C = 0$, de donde $C = -1$.
+
+Del término en $x^2$: $-4A + B - 2C + D = 3$, de donde $D = 3$.
+
+##
+La descomposición queda:
+$$\frac{3x^2 - 4x + 8}{x^2 (x - 2)^2} = \frac{1}{x} + \frac{2}{x^2} - \frac{1}{x - 2} + \frac{3}{(x - 2)^2}$$
+
+Integrando:
+$$\ln |x| - \frac{2}{x} - \ln |x - 2| - \frac{3}{x - 2} + C$$
+
+Muchos libros escriben la solución como un logaritmo de un cociente:
+$$\ln \left| \frac{x}{x - 2} \right| - \frac{2}{x} - \frac{3}{x - 2} + C$$
+
+##
+Verificación por derivación:
+$$\frac{d}{dx} \left[ \ln |x| - \frac{2}{x} - \ln |x - 2| - \frac{3}{x - 2} \right] = \frac{1}{x} + \frac{2}{x^2} - \frac{1}{x - 2} + \frac{3}{(x - 2)^2}$$
+
+# Gracias por su atención

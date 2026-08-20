@@ -1,0 +1,1 @@
+Estamos con fracciones parciales

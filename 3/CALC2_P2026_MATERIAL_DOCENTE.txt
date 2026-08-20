@@ -1,0 +1,347 @@
+CÁLCULO II
+Unidad I · Integrales indefinidas · Primavera 2026
+MATERIAL ESTUDIANTES
+
+GUÍA DE APRENDIZAJE · SEMANA 3 · AYUDANTÍA
+
+Selección y ejecución de métodos
+Sustitución, integración por partes y fracciones parciales
+FECHA
+
+DURACIÓN
+
+META
+
+Viernes 21 de agosto de 2026
+
+90–120 min
+
+Elegir, justificar y ejecutar técnicas de integración a partir de
+la estructura del integrando.
+
+Nombre:
+
+EXIGENCIA DEL CURSO: En cada ejercicio debes identificar el método, mostrar la transformación decisiva, desarrollar la primitiva
+y verificar por derivación. Una respuesta aislada no demuestra dominio del procedimiento.
+
+Ruta de trabajo
+
+10 min
+Activar
+
+20 min
+Sustituir
+
+30 min
+Por partes
+
+40 min
+Fracciones
+
+10 min
+Cerrar
+
+Alcance de la ayudantía
+
+Esta guía considera solamente contenidos ya trabajados. La sustitución trigonométrica se estudiará el lunes 24 de agosto y se
+incorporará después al taller del viernes 28.
+
+1. Activación: decidir antes de calcular
+Trabajo individual · contraste en parejas
+
+Asocia cada integral con su método principal. Si requiere una combinación, indica el orden.
+INTEGRAL
+∫
+2x
+dx
+x2 + 5
+∫
+xex dx
+∫
+∫
+
+MÉTODO PRINCIPAL
+
+INDICIO OBSERVADO
+
+PREGUNTA DECISIVA
+¿Puedo construir una función interna y
+su diferencial, quizás reestructurando?
+¿Un producto se simplifica al derivar uno
+de sus factores?
+¿La función es racional y la fracción es
+propia?
+
+VERIFICACIÓN MÍNIMA
+Volver a x y derivar
+
+3x + 1
+dx
+(x − 1)(x + 2)
+ex cos x dx
+
+∫
+
+x3 + 1
+dx
+x2 − 1
+
+2. Recordatorio operativo
+Criterios mínimos para seleccionar el método
+
+MÉTODO
+Sustitución
+Por partes
+Fracciones parciales
+
+Universidad Autónoma de Chile · 1
+
+Derivar uv −
+
+∫
+
+v du
+
+Reconstruir la identidad
+
+CÁLCULO II
+Unidad I · Integrales indefinidas · Primavera 2026
+MATERIAL ESTUDIANTES
+
+3. Ejemplo modelado
+Combinación de sustitución e integración por partes
+
+∫
+
+Resolver I =
+
+x ln(x2 + 1) dx.
+
+1
+
+Reconocer la composición: u = x2 + 1 y du = 2x dx.
+
+2
+
+Transformar:
+I=
+
+3
+
+Aplicar partes con a = ln u y dv = du:
+
+1
+2
+
+∫
+ln u du.
+
+∫
+ln u du = u ln u − u.
+
+4
+
+Volver a la variable original:
+I=
+
+]
+1[ 2
+(x + 1) ln(x2 + 1) − (x2 + 1) + C.
+2
+
+Verificación
+
+Al derivar, los términos provenientes de la regla del producto se cancelan y queda exactamente x ln(x2 + 1).
+
+4. Práctica de ayudantía
+Resolver con desarrollo completo y verificación
+
+A. Sustitución con reestructuración
+1.
+
+Reestructura el numerador antes de sustituir.
+∫
+
+x3
+dx
+x2 + 4
+
+Decisión inicial y justificación:
+
+2.
+
+Reconoce la composición logarítmica.
+∫
+
+1
+dx
+x [1 + (ln x)2 ]
+
+Decisión inicial y justificación:
+
+3.
+
+Reserva un factor x dx y reescribe la potencia restante.
+∫
+√
+
+x5
+dx
+x2 + 1
+
+Decisión inicial y justificación:
+
+Universidad Autónoma de Chile · 2
+
+CÁLCULO II
+Unidad I · Integrales indefinidas · Primavera 2026
+MATERIAL ESTUDIANTES
+
+B. Integración por partes
+4.
+
+Aplica integración por partes en forma repetida.
+∫
+x2 e2x dx
+
+Decisión inicial y justificación:
+
+5.
+
+Resuelve una integración por partes cíclica.
+∫
+ex sin(2x) dx
+
+Decisión inicial y justificación:
+
+6.
+
+Selecciona correctamente u en un producto con logaritmo.
+∫
+x2 ln x dx
+
+Decisión inicial y justificación:
+
+7.
+
+Escribe la función inversa como un producto.
+∫
+arctan x dx
+
+Decisión inicial y justificación:
+
+Universidad Autónoma de Chile · 3
+
+CÁLCULO II
+Unidad I · Integrales indefinidas · Primavera 2026
+MATERIAL ESTUDIANTES
+
+C. Fracciones parciales
+8.
+
+Factoriza en factores lineales distintos.
+∫
+
+5x + 7
+dx
+x2 + x − 2
+
+Decisión inicial y justificación:
+
+9.
+
+Incluye todas las potencias de los factores repetidos.
+∫
+
+3x2 − 4x + 8
+dx
+x2 (x − 2)2
+
+Decisión inicial y justificación:
+
+10.
+
+Usa numerador lineal sobre el cuadrático irreducible.
+∫
+
+5x2 + 2x + 7
+dx
+(x + 1)(x2 + 4)
+
+Decisión inicial y justificación:
+
+11.
+
+Realiza división polinómica antes de descomponer.
+∫
+
+x4 − 2x3 + 2x2 + 4x + 3
+dx
+x2 − 1
+
+Decisión inicial y justificación:
+
+Universidad Autónoma de Chile · 4
+
+CÁLCULO II
+Unidad I · Integrales indefinidas · Primavera 2026
+MATERIAL ESTUDIANTES
+
+12.
+
+Aplica fracciones parciales y utiliza la condición inicial.
+dM
+4t + 9
+=
+,
+dt
+(t + 1)(t + 2)
+
+M (0) = 12
+
+Decisión inicial y justificación:
+
+Calcula además M (3) e interpreta el resultado.
+
+5. Cierre
+Evidencia individual antes del taller grupal
+
+Autoevaluación de salida
+CRITERIO
+
+SÍ
+
+A VECES
+
+AÚN NO
+
+Identifiqué el método antes de iniciar el cálculo.
+
+□
+
+□
+
+□
+
+Registré un desarrollo ordenado y verificable.
+
+□
+
+□
+
+□
+
+Puedo explicar el paso decisivo con mis palabras.
+
+□
+
+□
+
+□
+
+Ticket de salida. Escribe una diferencia estructural entre integración por partes y fracciones parciales, y registra el ejercicio que debes
+rehacer antes del 28 de agosto.
+
+Universidad Autónoma de Chile · 5
+
+

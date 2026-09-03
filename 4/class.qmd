@@ -1,0 +1,177 @@
+---
+title: "Revisión Evaluación Regular 1"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## Ejercicio 1
+Sea $G$ una función derivable, definida en un intervalo que contiene a $0$, que satisface:
+$$G'(x) = \frac{3x^2}{\sqrt{x^3 + 4}} \quad \text{y} \quad G(0) = 1$$
+Determine explícitamente la función $G$.
+
+##
+Por definición de primitiva, la función buscada es la integral indefinida de su derivada:
+$$G(x) = \int \frac{3x^2}{\sqrt{x^3 + 4}} \, dx$$
+El numerador es, salvo constante, la derivada del interior de la raíz. Indicamos la sustitución simple y su diferencial:
+$$u = x^3 + 4, \quad du = 3x^2 \, dx$$
+
+##
+Transformamos la integral usando que $du = 3x^2 \, dx$:
+$$\int \frac{3x^2}{\sqrt{x^3 + 4}} \, dx = \int \frac{du}{\sqrt{u}} = \int u^{-1/2} \, du$$
+Calculamos la integral de la potencia:
+$$\int u^{-1/2} \, du = \frac{u^{1/2}}{1/2} + C = 2\sqrt{u} + C$$
+Volviendo a la variable $x$:
+$$G(x) = 2\sqrt{x^3 + 4} + C$$
+
+##
+Utilizamos la condición inicial para determinar la constante. Evaluando en $x = 0$:
+$$G(0) = 2\sqrt{0 + 4} + C = 4 + C$$
+Como $G(0) = 1$:
+$$4 + C = 1 \quad \Longrightarrow \quad C = -3$$
+Por lo tanto, la función explícita es:
+$$G(x) = 2\sqrt{x^3 + 4} - 3$$
+
+##
+Verificamos la respuesta obtenida derivando el resultado:
+$$\frac{d}{dx}\left[ 2\sqrt{x^3 + 4} - 3 \right] = 2 \cdot \frac{1}{2\sqrt{x^3 + 4}} \cdot 3x^2 = \frac{3x^2}{\sqrt{x^3 + 4}}$$
+Además se cumple $G(0) = 2 \cdot 2 - 3 = 1$, de modo que la solución satisface la ecuación diferencial y la condición inicial.
+
+## Ejercicio 2
+Calcular la integral, con $x \neq 0$:
+$$I = \int \frac{dx}{x\sqrt{16x^2 + 9}}$$
+Dato:
+$$\int \csc u \, du = \ln|\csc u - \cot u| + C$$
+
+##
+Una sustitución simple no funciona aquí: si tomamos $u = 16x^2 + 9$, entonces $du = 32x \, dx$, pero en el integrando aparece $\frac{1}{x}$ y no $x$, por lo que no hay cómo absorber el diferencial.
+
+Cuando la raíz es una suma o diferencia de cuadrados, la salida es una sustitución trigonométrica que convierte la raíz en un solo término mediante una identidad pitagórica.
+
+## 
+
+Los tres casos estándar son:
+
+::: {style="font-size: 0.6em;"}
+| Forma en la raíz | Sustitución | Identidad que se usa | La raíz queda |
+|---|---|---|---|
+| $\sqrt{a^2 + z^2}$ | $z = a\tan u$ | $1 + \tan^2 u = \sec^2 u$ | $a\sec u$ |
+| $\sqrt{a^2 - z^2}$ | $z = a\sin u$ | $1 - \sin^2 u = \cos^2 u$ | $a\cos u$ |
+| $\sqrt{z^2 - a^2}$ | $z = a\sec u$ | $\sec^2 u - 1 = \tan^2 u$ | $a\tan u$ |
+
+: {.sm}
+:::
+
+##
+
+Nuestro integrando contiene $\sqrt{16x^2 + 9} = \sqrt{(4x)^2 + 3^2}$, es decir, el primer caso con $z = 4x$ y $a = 3$. Por eso tomamos:
+$$4x = 3\tan u, \quad \text{es decir} \quad x = \frac{3}{4}\tan u$$
+
+##
+Trabajamos con $u$ en el intervalo $(-\pi/2, \pi/2)$, donde la tangente recorre todos los reales y la secante es positiva, de modo que no aparecen valores absolutos al extraer la raíz. Diferenciando:
+$$dx = \frac{3}{4}\sec^2 u \, du$$
+Y la raíz se simplifica con la identidad $1 + \tan^2 u = \sec^2 u$:
+$$\sqrt{16x^2 + 9} = \sqrt{9\tan^2 u + 9} = \sqrt{9\sec^2 u} = 3\sec u$$
+
+##
+Reemplazando en la integral:
+$$I = \int \frac{\frac{3}{4}\sec^2 u \, du}{\frac{3}{4}\tan u \cdot 3\sec u} = \frac{1}{3}\int \frac{\sec u}{\tan u} \, du$$
+Como el cociente de secante por tangente es la cosecante:
+$$\frac{\sec u}{\tan u} = \frac{1}{\cos u} \cdot \frac{\cos u}{\sin u} = \csc u$$
+Luego:
+$$I = \frac{1}{3}\int \csc u \, du$$
+
+##
+Aplicando el dato entregado:
+$$I = \frac{1}{3}\ln|\csc u - \cot u| + C$$
+Para volver a la variable $x$ usamos que $\tan u = \frac{4x}{3}$. En un triángulo rectángulo de cateto opuesto $4x$ y cateto adyacente $3$, la hipotenusa es $\sqrt{16x^2 + 9}$. Por lo tanto:
+$$\sin u = \frac{4x}{\sqrt{16x^2 + 9}}, \quad \cos u = \frac{3}{\sqrt{16x^2 + 9}}$$
+De donde:
+$$\csc u = \frac{\sqrt{16x^2 + 9}}{4x}, \quad \cot u = \frac{3}{4x}$$
+
+##
+Restando ambas expresiones:
+$$\csc u - \cot u = \frac{\sqrt{16x^2 + 9} - 3}{4x}$$
+Sustituyendo en la primitiva:
+$$I = \frac{1}{3}\ln\left| \frac{\sqrt{16x^2 + 9} - 3}{4x} \right| + C$$
+Esta es la familia de primitivas para $x \neq 0$. Derivando el logaritmo se recupera el integrando $\frac{1}{x\sqrt{16x^2 + 9}}$, lo que verifica el cálculo.
+
+## Ejercicio 3
+Resuelva la integral:
+$$\int \frac{x^2 + x - 1}{x^3 - x^2 - 2x} \, dx$$
+
+##
+La fracción es propia, pues el numerador tiene grado 2 y el denominador grado 3. Factorizamos el denominador extrayendo $x$ como factor común:
+$$x^3 - x^2 - 2x = x(x^2 - x - 2)$$
+El trinomio cuadrático tiene raíces $x = 2$ y $x = -1$, de modo que:
+$$x^3 - x^2 - 2x = x(x - 2)(x + 1)$$
+Son tres factores lineales distintos, por lo que la descomposición es:
+$$\frac{x^2 + x - 1}{x(x - 2)(x + 1)} = \frac{A}{x} + \frac{B}{x - 2} + \frac{C}{x + 1}$$
+
+##
+Multiplicamos por el denominador común $x(x - 2)(x + 1)$:
+$$x^2 + x - 1 = A(x - 2)(x + 1) + Bx(x + 1) + Cx(x - 2)$$
+Evaluamos en las raíces del denominador. Con $x = 0$:
+$$-1 = A(-2)(1) \quad \Longrightarrow \quad A = \frac{1}{2}$$
+Con $x = 2$:
+$$5 = B(2)(3) \quad \Longrightarrow \quad B = \frac{5}{6}$$
+Con $x = -1$:
+$$-1 = C(-1)(-3) \quad \Longrightarrow \quad C = -\frac{1}{3}$$
+
+##
+La descomposición queda:
+$$\frac{x^2 + x - 1}{x^3 - x^2 - 2x} = \frac{1/2}{x} + \frac{5/6}{x - 2} - \frac{1/3}{x + 1}$$
+Integramos término a término con la integral del logaritmo:
+$$\int \left( \frac{1/2}{x} + \frac{5/6}{x - 2} - \frac{1/3}{x + 1} \right) dx = \frac{1}{2}\ln|x| + \frac{5}{6}\ln|x - 2| - \frac{1}{3}\ln|x + 1| + C$$
+
+##
+Verificamos derivando la respuesta:
+$$\frac{d}{dx}\left[ \frac{1}{2}\ln|x| + \frac{5}{6}\ln|x - 2| - \frac{1}{3}\ln|x + 1| \right] = \frac{1/2}{x} + \frac{5/6}{x - 2} - \frac{1/3}{x + 1}$$
+Sumando las tres fracciones se obtiene:
+$$\frac{3(x - 2)(x + 1) + 5x(x + 1) - 2x(x - 2)}{6x(x - 2)(x + 1)} = \frac{x^2 + x - 1}{x(x - 2)(x + 1)}$$
+que es el integrando original.
+
+## Ejercicio 4
+En un proceso químico, la transferencia de calor al sistema varía debido a cambios periódicos de temperatura. La tasa de variación de la energía térmica acumulada está modelada por:
+$$Q'(t) = (t + 2)\cos t$$
+donde $t$ representa el tiempo transcurrido durante el proceso, medido en minutos, y la tasa está en kilojulios por minuto. Determine la función $Q(t)$, sabiendo que al inicio del proceso la energía térmica acumulada es de $3$ kilojulios.
+
+##
+La energía acumulada es la primitiva de su tasa de variación:
+$$Q(t) = \int (t + 2)\cos t \, dt$$
+Separamos la integral en dos sumandos:
+$$Q(t) = \int t\cos t \, dt + 2\int \cos t \, dt$$
+La segunda integral es inmediata:
+$$2\int \cos t \, dt = 2\sin t + C_1$$
+
+##
+La primera integral requiere integración por partes. Elegimos:
+$$u = t, \quad dv = \cos t \, dt$$
+de modo que:
+$$du = dt, \quad v = \sin t$$
+Aplicando la fórmula de partes:
+$$\int t\cos t \, dt = t\sin t - \int \sin t \, dt = t\sin t + \cos t + C_2$$
+
+##
+Sumando ambos aportes en una sola constante $C$:
+$$Q(t) = t\sin t + \cos t + 2\sin t + C = (t + 2)\sin t + \cos t + C$$
+Usamos que al inicio del proceso, es decir con $t = 0$, la energía es $3$ kilojulios:
+$$Q(0) = (0 + 2)\sin 0 + \cos 0 + C = 1 + C = 3$$
+De donde $C = 2$. La función buscada es:
+$$Q(t) = (t + 2)\sin t + \cos t + 2$$
+
+##
+Verificamos derivando:
+$$Q'(t) = \sin t + (t + 2)\cos t - \sin t = (t + 2)\cos t$$
+Además $Q(0) = 0 + 1 + 2 = 3$. La función describe entonces una oscilación modulada por el factor $t + 2$, desplazada en $2$ kilojulios para partir desde la energía inicial del proceso.
+
+# Gracias por su atención

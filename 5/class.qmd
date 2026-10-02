@@ -1,0 +1,239 @@
+---
+title: "Integrales Definidas"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+## La integral definida
+La integral definida de $f$ sobre el intervalo $[a, b]$ es el límite de las sumas de Riemann cuando la partición del intervalo se hace cada vez más fina:
+
+$$\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \, \Delta x$$
+
+Geométricamente es el área con signo bajo la curva: cuenta positivo donde $f$ está sobre el eje $x$ y negativo donde $f$ está bajo el eje. A diferencia de la integral indefinida, el resultado es un número y no una familia de funciones.
+
+## Teorema Fundamental del Cálculo
+Si $F$ es una primitiva de $f$, es decir si $F'(x) = f(x)$, entonces la integral definida se calcula evaluando $F$ en los extremos del intervalo:
+
+$$\int_a^b f(x) \, dx = F(b) - F(a)$$
+
+La notación abreviada es:
+
+$$\int_a^b f(x) \, dx = \Big[ F(x) \Big]_a^b = F(b) - F(a)$$
+
+La constante de integración se cancela al restar, por eso en las integrales definidas no se escribe la constante $C$.
+
+## Propiedades de la integral definida
+La integral definida hereda la linealidad de las sumas de Riemann:
+
+$$\int_a^b \left[ c f(x) + g(x) \right] dx = c \int_a^b f(x) \, dx + \int_a^b g(x) \, dx$$
+
+Al intercambiar los límites de integración, la integral cambia de signo:
+
+$$\int_a^b f(x) \, dx = - \int_b^a f(x) \, dx$$
+
+Y si los límites coinciden, la integral vale cero: $\int_a^a f(x) \, dx = 0$.
+
+## Propiedades de la integral definida
+El intervalo de integración se puede partir en subintervalos, propiedad que usaremos para funciones definidas por tramos:
+
+$$\int_a^c f(x) \, dx = \int_a^b f(x) \, dx + \int_b^c f(x) \, dx$$
+
+Para funciones pares, el área a la izquierda y a la derecha del origen es la misma:
+
+$$\int_{-a}^{a} f(x) \, dx = 2 \int_0^a f(x) \, dx \quad \text{si } f(-x) = f(x)$$
+
+Para funciones impares, las dos mitades se cancelan:
+
+$$\int_{-a}^{a} f(x) \, dx = 0 \quad \text{si } f(-x) = -f(x)$$
+
+## Ejercicio 1
+Calcular la integral definida:
+
+$$\int_{-1}^{2} \left( 3x^2 - 4x + 1 \right) dx$$
+
+##
+
+Por el Teorema Fundamental del Cálculo, primero encontramos una primitiva del integrando, integrando término a término:
+
+$$\int \left( 3x^2 - 4x + 1 \right) dx = x^3 - 2x^2 + x$$
+
+La constante de integración no hace falta escribirla, porque al restar los valores en los extremos se cancela.
+
+##
+
+Evaluamos la primitiva en el límite superior y le restamos su valor en el límite inferior:
+
+$$\Big[ x^3 - 2x^2 + x \Big]_{-1}^{2} = \left( 8 - 8 + 2 \right) - \left( -1 - 2 - 1 \right)$$
+
+$$= 2 - (-4) = 6$$
+
+El valor de la integral definida es $6$.
+
+## Ejercicio 2
+Calcular la integral definida:
+
+$$\int_0^{\pi/2} \sin^3 x \cos x \, dx$$
+
+##
+
+En una integral definida la sustitución funciona igual que en la indefinida, con una ventaja: los límites de integración también se transforman y no hace falta volver a la variable original.
+
+Tomamos $u = \sin x$, de modo que $du = \cos x \, dx$. Los nuevos límites se obtienen evaluando la sustitución en los extremos:
+
+$$x = 0 \Rightarrow u = \sin 0 = 0, \qquad x = \frac{\pi}{2} \Rightarrow u = \sin \frac{\pi}{2} = 1$$
+
+##
+
+Reemplazando la variable y los límites:
+
+$$\int_0^{\pi/2} \sin^3 x \cos x \, dx = \int_0^1 u^3 \, du$$
+
+Integramos la potencia:
+
+$$\int_0^1 u^3 \, du = \left[ \frac{u^4}{4} \right]_0^1 = \frac{1}{4} - 0 = \frac{1}{4}$$
+
+La integral definida vale $\frac{1}{4}$.
+
+## Ejercicio 3
+Calcular la integral definida:
+
+$$\int_0^1 \sqrt{1 - x^2} \, dx$$
+
+##
+
+La gráfica de $y = \sqrt{1 - x^2}$ es la mitad superior del círculo de radio $1$ centrado en el origen. Integrando desde $0$ hasta $1$ calculamos el área de un cuarto de círculo, que debe dar $\frac{\pi}{4}$.
+
+Verificamos este valor por sustitución trigonométrica, el caso de la forma $\sqrt{a^2 - z^2}$. Tomamos $x = \sin u$, de modo que $dx = \cos u \, du$. Transformamos los límites:
+
+$$x = 0 \Rightarrow u = 0, \qquad x = 1 \Rightarrow u = \arcsin 1 = \frac{\pi}{2}$$
+
+##
+
+La raíz se simplifica con la identidad $1 - \sin^2 u = \cos^2 u$. Trabajamos con $u$ en $[0, \pi/2]$, donde el coseno es positivo:
+
+$$\sqrt{1 - x^2} = \sqrt{1 - \sin^2 u} = \cos u$$
+
+La integral se transforma en:
+
+$$\int_0^1 \sqrt{1 - x^2} \, dx = \int_0^{\pi/2} \cos^2 u \, du$$
+
+##
+
+Aplicamos la identidad del ángulo doble $\cos^2 u = \frac{1 + \cos 2u}{2}$:
+
+$$\int_0^{\pi/2} \cos^2 u \, du = \frac{1}{2} \int_0^{\pi/2} \left( 1 + \cos 2u \right) du$$
+
+Integramos término a término:
+
+$$\frac{1}{2} \left[ u + \frac{\sin 2u}{2} \right]_0^{\pi/2} = \frac{1}{2} \left( \frac{\pi}{2} + 0 - 0 - 0 \right) = \frac{\pi}{4}$$
+
+El resultado coincide con el área del cuarto de círculo.
+
+## Ejercicio 4
+Calcular la integral definida:
+
+$$\int_0^\pi x \sin x \, dx$$
+
+##
+
+Aplicamos integración por partes. Para integrales definidas, la fórmula es:
+
+$$\int_a^b u \, dv = \Big[ uv \Big]_a^b - \int_a^b v \, du$$
+
+El factor $x$ se elimina al derivar, por eso elegimos:
+
+$$u = x, \quad dv = \sin x \, dx \quad \Rightarrow \quad du = dx, \quad v = -\cos x$$
+
+##
+
+Reemplazando en la fórmula:
+
+$$\int_0^\pi x \sin x \, dx = \Big[ -x \cos x \Big]_0^\pi - \int_0^\pi \left( -\cos x \right) dx$$
+
+Evaluamos el primer término:
+
+$$\Big[ -x \cos x \Big]_0^\pi = -\pi \cos \pi - (-0 \cdot \cos 0) = -\pi (-1) = \pi$$
+
+##
+
+La integral restante es inmediata:
+
+$$\int_0^\pi \cos x \, dx = \Big[ \sin x \Big]_0^\pi = 0 - 0 = 0$$
+
+Sumando ambos aportes:
+
+$$\int_0^\pi x \sin x \, dx = \pi + 0 = \pi$$
+
+## Ejercicio 5
+Calcular la integral definida:
+
+$$\int_{-2}^{2} \left( x^3 + x^2 + 1 \right) dx$$
+
+##
+
+El intervalo es simétrico respecto del origen, así que separamos el integrando en su parte impar y su parte par. La función $x^3$ es impar y $x^2 + 1$ es par.
+
+Por la propiedad de simetría, la integral de la parte impar sobre el intervalo simétrico se anula:
+
+$$\int_{-2}^{2} x^3 \, dx = 0$$
+
+##
+
+Para la parte par, la integral se duplica sobre la mitad del intervalo:
+
+$$\int_{-2}^{2} \left( x^2 + 1 \right) dx = 2 \int_0^2 \left( x^2 + 1 \right) dx$$
+
+Calculamos la primitiva y evaluamos:
+
+$$2 \left[ \frac{x^3}{3} + x \right]_0^2 = 2 \left( \frac{8}{3} + 2 \right) = 2 \cdot \frac{14}{3} = \frac{28}{3}$$
+
+La integral definida vale $\frac{28}{3}$.
+
+## Ejercicio 6
+En un proceso químico, la tasa de transferencia de calor al sistema varía con el tiempo según:
+
+$$Q'(t) = (t + 2) \cos t$$
+
+donde $t$ se mide en minutos y la tasa en kilojulios por minuto. Determine el calor total transferido al sistema entre $t = 0$ y $t = \frac{\pi}{2}$ minutos.
+
+##
+
+El calor total transferido en el intervalo es la integral definida de la tasa de transferencia:
+
+$$Q = \int_0^{\pi/2} (t + 2) \cos t \, dt$$
+
+Separamos la integral en dos sumandos:
+
+$$Q = \int_0^{\pi/2} t \cos t \, dt + 2 \int_0^{\pi/2} \cos t \, dt$$
+
+##
+
+La primera integral se resuelve por partes, con $u = t$ y $dv = \cos t \, dt$, de modo que $du = dt$ y $v = \sin t$:
+
+$$\int t \cos t \, dt = t \sin t - \int \sin t \, dt = t \sin t + \cos t$$
+
+La segunda es inmediata:
+
+$$2 \int \cos t \, dt = 2 \sin t$$
+
+##
+
+Juntando ambas primitivas y evaluando entre los límites:
+
+$$Q = \Big[ t \sin t + \cos t + 2 \sin t \Big]_0^{\pi/2}$$
+
+$$= \left( \frac{\pi}{2} \cdot 1 + 0 + 2 \cdot 1 \right) - \left( 0 + 1 + 0 \right) = \frac{\pi}{2} + 1$$
+
+El calor total transferido es $\frac{\pi}{2} + 1$ kilojulios, aproximadamente $2{,}57$ kilojulios.
+
+# Gracias por su atención

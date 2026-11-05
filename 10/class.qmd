@@ -1,0 +1,144 @@
+---
+title: "Integrales Impropias"
+author: "Flavio Jara L."
+format:
+  revealjs:
+      transition: zoom
+      html-math-method: katex
+include-in-header:
+  - text: |
+      <style>
+      p,ul {
+        font-size: 0.70em;
+      }
+      </style>
+---
+
+# Integrales impropias
+## ¿Qué son?
+La integral de Riemann exige un intervalo cerrado y acotado y una función acotada. Las integrales impropias extienden la integral a dos situaciones:
+
+- intervalo no acotado: integral impropia de primera especie;
+- función no acotada en un intervalo acotado: integral impropia de segunda especie.
+
+Cuando se combinan ambas, se habla de integrales de tercera especie o mixtas.
+
+## Primera especie
+Si $f$ es integrable en $[a,b]$ para todo $b>a$, se define
+$$\int_a^{+\infty}f(x)\,dx=\lim_{b\to+\infty}\int_a^b f(x)\,dx.$$
+Si el límite existe y es finito, la integral **converge**; si no existe, **diverge**.
+
+De forma análoga,
+$$\int_{-\infty}^b f(x)\,dx=\lim_{a\to-\infty}\int_a^b f(x)\,dx,$$
+y para $\int_{-\infty}^{+\infty}$ se elige un punto $c$ y se exige que ambas partes converjan.
+
+## Segunda especie
+Si $f$ no es acotada en el extremo $b$,
+$$\int_a^{b^-}f(x)\,dx=\lim_{c\to b^-}\int_a^c f(x)\,dx.$$
+Si no es acotada en el extremo $a$,
+$$\int_{a^+}^b f(x)\,dx=\lim_{c\to a^+}\int_c^b f(x)\,dx.$$
+La integral converge si el límite lateral existe y es finito.
+
+## Tercera especie
+Si hay varias singularidades (extremos no acotados o puntos donde la función se dispara), se divide el intervalo en cada singularidad:
+$$\int_a^b f=\int_a^c f+\int_c^b f.$$
+La integral completa converge si y solo si **cada** una de las partes converge.
+
+## Integrales de referencia
+Estas dos familias aparecen constantemente en las comparaciones:
+
+- $\displaystyle\int_a^{+\infty}\frac{dx}{x^p}$ converge si $p>1$ y diverge si $p\le 1$.
+- $\displaystyle\int_a^{b^-}\frac{dx}{(b-x)^p}$ converge si $p<1$ y diverge si $p\ge 1$.
+
+## Criterio de comparación
+Si $0\le f(x)\le g(x)$ para todo $x\ge b$, entonces:
+
+- si $\displaystyle\int_a^{+\infty}g$ converge, entonces $\displaystyle\int_a^{+\infty}f$ converge;
+- si $\displaystyle\int_a^{+\infty}f$ diverge, entonces $\displaystyle\int_a^{+\infty}g$ diverge.
+
+## Criterio del cuociente
+Si $f,g>0$ para $x$ grande y
+$$\lim_{x\to+\infty}\frac{f(x)}{g(x)}=L>0,$$
+entonces $\displaystyle\int_a^{+\infty}f$ y $\displaystyle\int_a^{+\infty}g$ convergen o divergen **ambas**.
+
+El mismo criterio se usa en integrales de segunda especie, comparando con $\dfrac{1}{(b-x)^p}$.
+
+# Ejercicios de integrales impropias
+## Ejercicio 1
+Determine si la integral converge y, en caso afirmativo, calcule su valor:
+$$\int_3^{+\infty}\frac{4}{x^2}\,dx.$$
+
+## Solución 1
+Escribimos el límite:
+$$\int_3^{+\infty}\frac{4}{x^2}\,dx=\lim_{b\to+\infty}\int_3^b 4x^{-2}\,dx.$$
+Integramos:
+$$\int 4x^{-2}\,dx=-\frac{4}{x}.$$
+Por lo tanto,
+$$\lim_{b\to+\infty}\left[-\frac{4}{x}\right]_3^b=\lim_{b\to+\infty}\left(-\frac{4}{b}+\frac{4}{3}\right)=\frac{4}{3}.$$
+La integral converge y vale $\dfrac{4}{3}$.
+
+## Ejercicio 2
+Determine si converge y calcule:
+$$\int_e^{+\infty}\frac{4}{x(\ln x)^3}\,dx.$$
+
+## Solución 2
+Usamos $u=\ln x$, con $du=\dfrac{dx}{x}$. Los extremos cambian:
+$$x=e \implies u=1, \qquad x\to+\infty \implies u\to+\infty.$$
+Entonces
+$$\int_e^{+\infty}\frac{4}{x(\ln x)^3}\,dx=\int_1^{+\infty}4u^{-3}\,du.$$
+
+##
+Integramos:
+$$\int_1^{+\infty}4u^{-3}\,du=\lim_{b\to+\infty}\left[-2u^{-2}\right]_1^b=\lim_{b\to+\infty}\left(-\frac{2}{b^2}+2\right)=2.$$
+La integral converge y vale $2$.
+
+## Ejercicio 3
+Determine si converge y calcule:
+$$\int_0^4\frac{5}{\sqrt{4-x}}\,dx.$$
+
+## Solución 3
+La función se dispara en $x=4$, así que el extremo problemático es el derecho:
+$$\int_0^4\frac{5}{\sqrt{4-x}}\,dx=\lim_{c\to4^-}\int_0^c 5(4-x)^{-1/2}\,dx.$$
+Con $u=4-x$, $du=-dx$, una primitiva es $-10\sqrt{4-x}$. Entonces
+$$\lim_{c\to4^-}\left[-10\sqrt{4-x}\right]_0^c=\lim_{c\to4^-}\left(-10\sqrt{4-c}+20\right)=20.$$
+La integral converge y vale $20$.
+
+## Ejercicio 4
+Determine si converge:
+$$\int_0^2\frac{1}{x}\,dx.$$
+
+## Solución 4
+La singularidad está en $x=0$, así que tomamos el límite lateral derecho:
+$$\int_0^2\frac{1}{x}\,dx=\lim_{c\to0^+}\int_c^2\frac{dx}{x}=\lim_{c\to0^+}\left[\ln x\right]_c^2.$$
+Entonces
+$$\lim_{c\to0^+}\left(\ln 2-\ln c\right)=+\infty.$$
+La integral diverge: el área no es finita.
+
+## Ejercicio 5
+Decida si converge, comparando sin calcular una primitiva:
+$$\int_1^{+\infty}\frac{dx}{x^2+2}.$$
+
+
+- **Comparación directa:** si $0\le f(x)\le g(x)$ para $x$ grande, entonces $\int g$ converge implica $\int f$ converge, y $\int f$ diverge implica $\int g$ diverge.
+- **Criterio del cuociente:** si $\displaystyle\lim_{x\to+\infty}\frac{f(x)}{g(x)}=L$ con $0<L<+\infty$, entonces ambas integrales convergen o ambas divergen.
+- **Convergencia absoluta:** si $\displaystyle\int_a^{+\infty}|f|$ converge, entonces $\displaystyle\int_a^{+\infty}f$ converge.
+
+
+## Solución 5
+Para $x\ge1$ se cumple $x^2+2\ge x^2$, por lo tanto
+$$0\le\frac{1}{x^2+2}\le\frac{1}{x^2}.$$
+La integral $\displaystyle\int_1^{+\infty}\frac{dx}{x^2}$ converge porque $p=2>1$. Por el criterio de comparación,
+$$\int_1^{+\infty}\frac{dx}{x^2+2}$$
+también converge.
+
+## Ejercicio 6
+Desde $t=0$, una corriente $i(t)=10e^{-5t}$ amperes atraviesa un conductor. Calcule la carga acumulada hasta un instante $T$ y la carga total que circulará.
+
+## Solución 6
+La carga acumulada es
+$$Q(T)=\int_0^T 10e^{-5t}\,dt=10\left[-\frac{e^{-5t}}{5}\right]_0^T=2\left(1-e^{-5T}\right).$$
+La carga total es el límite cuando $T\to+\infty$:
+$$Q_{\text{total}}=\lim_{T\to+\infty}2\left(1-e^{-5T}\right)=2.$$
+Se acumulan $2$ coulombs.
+
+# Gracias por su atención

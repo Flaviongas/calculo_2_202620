@@ -1,0 +1,279 @@
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- Geometría y tipografía (igual que la guía) ----------
+\usepackage[letterpaper,left=0.75in,right=0.75in,top=1.0in,bottom=0.75in,headheight=0pt,headsep=0pt,footskip=0pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Carlito}[
+  Path=/nix/store/m7q6p26a3n2pyhnqhk0sbknfif2pbc8s-carlito-20130920/share/fonts/truetype/,
+  Extension=.ttf,
+  UprightFont=Carlito-Regular,
+  BoldFont=Carlito-Bold,
+  ItalicFont=Carlito-Italic,
+  BoldItalicFont=Carlito-BoldItalic
+]
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage{graphicx}
+
+% ---------- Paleta de la guía ----------
+\definecolor{ink}{HTML}{2F3137}
+\definecolor{muted}{HTML}{61666C}
+\definecolor{accent}{HTML}{E11B22}
+\definecolor{accentdark}{HTML}{A4121A}
+\definecolor{boxgray}{HTML}{F3F5F7}
+\definecolor{boxpink}{HTML}{FDEBEB}
+\definecolor{boxcream}{HTML}{FFF4D6}
+\definecolor{boxgreen}{HTML}{EAF4EF}
+\definecolor{linegray}{HTML}{D9DDE1}
+
+\color{ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\linespread{1.02}
+
+% ---------- Encabezado y pie en todas las páginas ----------
+\pagestyle{empty}
+\AddToHook{shipout/background}{%
+  \put(54,-64){\makebox(0,0)[bl]{\includegraphics[height=54pt]{LOGO-UA-color.jpg}}}%
+  \put(558,-64){\makebox(0,0)[br]{\begin{minipage}[b]{250pt}\raggedleft
+    {\color{muted}\fontsize{10}{12}\selectfont
+     Cálculo II · Unidad 3\\
+     Segundo semestre 2026\\
+     Evaluación N.º 3}\end{minipage}}}%
+  \put(54,-753.5){\color{accent}\rule{504pt}{0.5pt}}%
+  \put(54,-757){\makebox(0,0)[tl]{\color{muted}\fontsize{10}{12}\selectfont Universidad Autónoma de Chile}}%
+  \put(558,-757){\makebox(0,0)[tr]{\color{muted}\fontsize{10}{12}\selectfont\thepage}}%
+}
+
+% ---------- Cajas ----------
+\newtcolorbox{cajagris}[1]{enhanced,frame hidden,arc=2mm,colback=boxgray,
+  left=4mm,right=4mm,top=2.3mm,bottom=2.3mm,boxsep=0pt,coltext=ink,
+  before skip=8pt,after skip=6pt,
+  before upper={\textbf{#1}\par\vspace{3.5pt}}}
+\newtcolorbox{cajapink}[1]{enhanced,frame hidden,arc=2mm,colback=boxpink,
+  left=4mm,right=4mm,top=2.3mm,bottom=2.3mm,boxsep=0pt,coltext=ink,
+  before skip=8pt,after skip=6pt,
+  before upper={\textbf{#1}\par\vspace{3.5pt}}}
+\newtcolorbox{cajacream}[1]{enhanced,frame hidden,arc=2mm,colback=boxcream,
+  left=4mm,right=4mm,top=2.3mm,bottom=2.3mm,boxsep=0pt,coltext=ink,
+  before skip=8pt,after skip=6pt,
+  before upper={\textbf{#1}\par\vspace{3.5pt}}}
+\newtcolorbox{cajagreen}[1]{enhanced,frame hidden,arc=2mm,colback=boxgreen,
+  left=4mm,right=4mm,top=2.3mm,bottom=2.3mm,boxsep=0pt,coltext=ink,
+  before skip=8pt,after skip=6pt,
+  before upper={\textbf{#1}\par\vspace{3.5pt}}}
+
+% ---------- Listas ----------
+\newlist{squarelist}{itemize}{1}
+\setlist[squarelist]{label={\color{ink}\scriptsize$\blacksquare$},
+  leftmargin=13pt,labelsep=5pt,itemsep=2pt,topsep=2pt,parsep=0pt}
+
+\newlist{checklist}{itemize}{1}
+\setlist[checklist]{label={\color{ink}\small$\square$},
+  leftmargin=13pt,labelsep=5pt,itemsep=2pt,topsep=2pt,parsep=0pt}
+
+\newlist{preguntas}{enumerate}{1}
+\setlist[preguntas]{label=\textbf{\color{accent}\arabic*.},
+  leftmargin=22pt,labelsep=7pt,itemsep=12pt,topsep=4pt,parsep=2pt}
+
+\newlist{partes}{enumerate}{1}
+\setlist[partes]{label=\alph*),leftmargin=17pt,labelsep=5pt,
+  itemsep=2pt,topsep=2pt,parsep=0pt}
+
+% ---------- Títulos ----------
+\titleformat{\section}{\color{accent}\fontsize{14.5}{17}\selectfont\bfseries}{\thesection.}{0.45em}{}
+\titlespacing*{\section}{0pt}{14pt plus 2pt minus 2pt}{7pt}
+
+\newcommand{\opciones}[5]{%
+  \par\vspace{2pt}%
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X@{\hspace{14pt}}>{\raggedright\arraybackslash}X@{}}
+    \textbf{a)}~#1 & \textbf{b)}~#2\\[3pt]
+    \textbf{c)}~#3 & \textbf{d)}~#4\\[3pt]
+    \textbf{e)}~#5 & \null
+  \end{tabularx}\par\vspace{-2pt}}
+
+\newcommand{\ejercicio}[2]{%
+  \par\needspace{6\baselineskip}%
+  \noindent{\bfseries\color{ink}Ejercicio #1: #2}\par}
+
+\newcommand{\rotulo}[1]{\par\vspace{4pt}{\color{ink}\bfseries\fontsize{10.5}{12}\selectfont #1}\par\vspace{1pt}}
+
+\newcount\nlineas
+\newcommand{\lineas}[1]{%
+  \par\vspace{1pt}%
+  \nlineas=#1\relax
+  \loop\ifnum\nlineas>0
+    \noindent{\color{linegray}\rule{\linewidth}{0.35pt}}\par\vspace{19pt}%
+    \advance\nlineas by -1
+  \repeat
+  \vspace{-10pt}}
+
+\begin{document}
+
+% ================= PORTADA / BLOQUE INICIAL =================
+{\color{ink}\bfseries\fontsize{17.3}{20}\selectfont Taller de refuerzo}\par\vspace{1pt}
+{\color{ink}\fontsize{14.7}{18}\selectfont Sucesiones y series}\par\vspace{9pt}
+
+\noindent
+\mbox{\textbf{Nombre:}\ \rule[0.5ex]{0.54\linewidth}{0.4pt}}%
+\hfill
+\mbox{\textbf{Fecha:}\ \rule[0.5ex]{0.22\linewidth}{0.4pt}}\par\vspace{2pt}
+
+% ================= SECCIÓN 1 =================
+\section{Preguntas de alternativa conceptuales}
+
+Responde sin calculadora y encierra en un círculo una sola alternativa por pregunta. Las respuestas incorrectas no descuentan.
+
+\begin{preguntas}
+\needspace{7\baselineskip}
+\item La sucesión $a_n=3+\dfrac{2}{n}$, con $n\ge 1$:
+  \opciones{converge a $2$ y es creciente.}
+           {converge a $3$ y es decreciente.}
+           {diverge, porque $\frac{1}{n}$ no está definida en $n=0$.}
+           {converge a $3$ y es creciente.}
+           {converge a $0$, porque $\frac{2}{n}\to 0$.}
+
+\needspace{7\baselineskip}
+\item Sea una sucesión geométrica con $a_1=5$ y razón $r=-\frac{1}{3}$. ¿Cuál es el valor de $a_4$?
+  \opciones{$\dfrac{5}{27}$}
+           {$-\dfrac{5}{27}$}
+           {$-\dfrac{5}{81}$}
+           {$\dfrac{5}{81}$}
+           {$-45$}
+
+\needspace{7\baselineskip}
+\item Una serie geométrica con $a_1\ne 0$ converge si y solo si:
+  \opciones{$r<1$.}
+           {$|r|<1$.}
+           {$|r|\le 1$.}
+           {$r=0$.}
+           {que $r$ es positivo.}
+
+\needspace{6\baselineskip}
+\item El límite de la sucesión $a_n=\dfrac{2n^2+n}{n^2+3}$ es:
+  \opciones{$0$}
+           {$1$}
+           {$2$}
+           {$3$}
+           {$+\infty$}
+
+\newpage
+\needspace{9\baselineskip}
+\item Para aplicar el criterio integral a $\sum a_n$ se busca $f$ tal que $a_n=f(n)$. ¿Qué condiciones son suficientes en $[N,\infty)$?
+  \opciones{$f$ continua y positiva.}
+           {$f$ continua, positiva y decreciente.}
+           {$f$ derivable y acotada.}
+           {$f$ positiva y con límite $0$ cuando $x\to\infty$.}
+           {$f$ creciente y no negativa.}
+
+\needspace{8\baselineskip}
+\item Si $\lim_{n\to\infty} a_n=0$, entonces:
+  \opciones{la serie $\sum a_n$ converge.}
+           {la serie $\sum a_n$ diverge.}
+           {la serie converge solo si es geométrica.}
+           {no se puede concluir nada sobre la convergencia de $\sum a_n$.}
+           {la suma de la serie es $0$.}
+
+\needspace{7\baselineskip}
+\item Al aplicar el criterio del cociente a una serie de términos no nulos se obtiene $L=1$. ¿Qué se concluye?
+  \opciones{La serie converge.}
+           {La serie diverge.}
+           {La serie converge absolutamente.}
+           {El criterio no decide; se debe usar otro criterio.}
+           {La suma de la serie es $1$.}
+
+\needspace{8\baselineskip}
+\item Para la serie $\displaystyle\sum_{n=1}^{\infty}\frac{4^n}{n!}$, el criterio del cociente entrega:
+  \opciones{$L=0<1$; converge.}
+           {$L=4>1$; diverge.}
+           {$L=\frac{1}{4}<1$; converge.}
+           {$L=1$; no se decide.}
+           {$L=+\infty$; diverge.}
+
+\needspace{6\baselineskip}
+\item Si la suma parcial de una serie es $S_N=3-\dfrac{1}{N}$, entonces la suma de la serie es:
+  \opciones{$0$}
+           {$1$}
+           {$2$}
+           {$3$}
+           {divergente.}
+\end{preguntas}
+
+% ================= SECCIÓN 2 =================
+\clearpage
+\section{Resuelve las siguientes sucesiones y series}
+
+En cada ejercicio explica por escrito cada paso: qué criterio usas, por qué se cumplen sus hipótesis y qué concluyes. No basta con indicar el resultado. Salvo que se indique otra cosa, las sucesiones comienzan en $n=1$.
+
+\ejercicio{1}{Sucesión geométrica contextualizada}\par\vspace{4pt}
+Un equipo transmite $800$ MB en la primera etapa. En cada etapa posterior transmite el $30$\% de la información enviada en la etapa anterior. El proceso continúa indefinidamente.
+\begin{partes}
+\item Escribe los cuatro primeros términos y el término general $a_n$.
+\item Determina si la sucesión es monótona y acotada. Calcula $\displaystyle\lim_{n\to\infty}a_n$ e interpreta el resultado en el contexto.
+\item Expresa la información total transmitida como una serie geométrica y calcula su suma. Indica la unidad.
+\end{partes}
+
+\rotulo{Desarrollo}
+\lineas{12}
+
+\clearpage
+\ejercicio{2}{Límite de una sucesión con raíz}\par\vspace{4pt}
+Considera la sucesión
+\[
+a_n=\sqrt{n^2+4n}-n.
+\]
+\begin{partes}
+\item Multiplica y divide por el conjugado $\sqrt{n^2+4n}+n$.
+\item Simplifica la expresión y calcula $\displaystyle\lim_{n\to\infty}a_n$, justificando cada paso.
+\item Decide si la sucesión es convergente. Si lo es, explica qué significa el valor obtenido.
+\end{partes}
+
+\rotulo{Desarrollo}
+\lineas{12}
+
+\clearpage
+\ejercicio{3}{Criterio integral}\par\vspace{4pt}
+Estudia la convergencia de la serie
+\[
+\sum_{n=3}^{\infty}\frac{n}{n^2+9}.
+\]
+\begin{partes}
+\item Define $f(x)=\dfrac{x}{x^2+9}$ y verifica continuidad, positividad y decrecimiento en $[3,\infty)$. Usa $f'(x)$ para justificar el decrecimiento.
+\item Escribe la integral impropia como un límite y calcúlala con la sustitución $u=x^2+9$.
+\item Concluye sobre la convergencia o divergencia de la serie. Explica por qué $a_n\to 0$ no es suficiente para afirmar que converge.
+\end{partes}
+
+\rotulo{Desarrollo}
+\lineas{12}
+
+% ================= SECCIÓN 3 =================
+\clearpage
+\section{Aplicación física: una sucesión que se detiene}
+
+Resuelve la situación y justifica cada paso por escrito.
+
+\begin{cajagris}{Situación}
+Una pelota se deja caer desde $2$ m. Después del primer rebote alcanza el $60$\% de la altura inicial; después de cada rebote siguiente alcanza el $60$\% de la altura del rebote anterior. Sea $h_n$ la altura máxima, en metros, alcanzada después del $n$-ésimo rebote.
+\end{cajagris}
+
+\begin{partes}
+\item Calcula $h_1$, $h_2$ y $h_3$. Escribe el término general $h_n$.
+\item Determina si $(h_n)$ es monótona y acotada. Calcula $\displaystyle\lim_{n\to\infty}h_n$.
+\item Concluye si la sucesión es convergente e interpreta físicamente el límite.
+\end{partes}
+
+\rotulo{Desarrollo}
+\lineas{9}
+\rotulo{Interpretación física:}
+\lineas{3}
+
+\end{document}
